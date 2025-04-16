@@ -39,3 +39,24 @@ console.log(felix.species, lucio.species)
 
 console.log(felix.hasOwnProperty('firstName'))
 console.log(felix.hasOwnProperty('species'))
+
+
+//prototype chain
+console.log(felix.__proto__.__proto__) //Obj
+console.log(felix.__proto__.__proto__.__proto__) //null
+
+console.dir(Person.prototype.constructor)
+
+const arr = [3, 4, 5, 3, 4, 5, 5, 3]
+console.log(arr.__proto__) //Array
+console.log(arr.__proto__ === Array.prototype)
+console.log(arr.__proto__.__proto__)
+
+
+//cool but avoid using
+Array.prototype.unique = function() {
+    return [...new Set(this)]
+}
+console.log(arr.unique())
+
+const h1 = document.querySelector('.h1')
