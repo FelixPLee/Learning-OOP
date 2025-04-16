@@ -60,3 +60,30 @@ Array.prototype.unique = function() {
 console.log(arr.unique())
 
 const h1 = document.querySelector('.h1')
+
+/////////Challenge///////////
+
+
+const Car = function(brand, speed){
+    this.brand = brand
+    this.speed = speed
+}
+
+Car.prototype.accelerate = function() {
+    this.speed += 10
+    console.log(`${this.brand} going at ${this.speed}`)
+}
+
+Car.prototype.brake = function() {
+    this.speed -= 5
+    console.log(`${this.brand} going at ${this.speed}`)
+}
+
+const BMW = new Car('BMW', 120)
+const Mercedes = new Car('Mercedes', 95)
+
+console.log(`${BMW.brand} going at ${BMW.speed}`)
+BMW.accelerate()
+Mercedes.accelerate()
+BMW.brake()
+Mercedes.brake()
