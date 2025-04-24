@@ -84,6 +84,38 @@ const Mercedes = new Car('Mercedes', 95)
 
 console.log(`${BMW.brand} going at ${BMW.speed}`)
 BMW.accelerate()
-Mercedes.accelerate()
 BMW.brake()
+Mercedes.accelerate()
 Mercedes.brake()
+
+// classes ES6
+
+// const PersonCl = class {}
+
+// class declaration
+
+class PersonCl {
+    constructor(firstName, birthYear){
+    this.firstName = firstName
+    this.birthYear = birthYear
+    }
+    //Methods
+    calcAge() {
+        console.log(2025 - this.birthYear)
+    }
+}
+
+
+const felix2 = new PersonCl('felix', 2005)
+console.log(felix2)
+felix2.calcAge()
+
+console.log(felix2.__proto__ === PersonCl.prototype)
+
+PersonCl.prototype.greet = function () {
+    console.log(`Hey ${this.firstName}`)
+}
+felix2.greet()
+// Classes are not hoisted
+// classes are first-class citizen
+// Classes are executed in strict mode
