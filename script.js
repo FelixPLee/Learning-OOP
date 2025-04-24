@@ -95,27 +95,57 @@ Mercedes.brake()
 // class declaration
 
 class PersonCl {
-    constructor(firstName, birthYear){
-    this.firstName = firstName
+    constructor(fullName, birthYear){
+    this.fullName = fullName
     this.birthYear = birthYear
     }
     //Methods
     calcAge() {
         console.log(2025 - this.birthYear)
     }
+
+    get age() {
+        return 2025 - this.birthYear
+    }
+
+    set fullName(name) {
+        if(name.includes(' ')) this._fullName = name
+        else(alert(`${name} is not a full name!`))
+    }
+    get fullName() {
+        return this._fullName
+    }
 }
 
 
-const felix2 = new PersonCl('felix', 2005)
+const felix2 = new PersonCl('Felix', 2005)
 console.log(felix2)
 felix2.calcAge()
+console.log(felix2.age)
+
 
 console.log(felix2.__proto__ === PersonCl.prototype)
 
 PersonCl.prototype.greet = function () {
-    console.log(`Hey ${this.firstName}`)
+    console.log(`Hey ${this.fullName}`)
 }
 felix2.greet()
 // Classes are not hoisted
 // classes are first-class citizen
 // Classes are executed in strict mode
+
+const account = {
+    owner: 'Felix',
+    movements: [200, 100, 530, 120],
+
+    get latest() {
+        return this.movements.slice(-1).pop()
+    },
+
+    set latest(mov) {
+        this.movements.push(mov)
+    }
+}
+console.log(account.latest)
+
+account.latest = 50
