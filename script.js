@@ -118,7 +118,7 @@ class PersonCl {
 
     set fullName(name) {
         if(name.includes(' ')) this._fullName = name
-        else(alert(`${name} is not a full name!`))
+        //else(alert(`${name} is not a full name!`))
     }
     get fullName() {
         return this._fullName
@@ -163,3 +163,27 @@ console.log(account.latest)
 account.latest = 50
 
 PersonCl.hey()
+
+
+const PersonProto = {
+    calcAge() {
+        console.log(2025 - this.birthYear)
+    },
+
+    init(firstName, birthYear) {
+        this.firstName = firstName
+        this.birthYear= 2002
+        steven.calcAge()
+    }
+}
+
+const steven = Object.create(PersonProto)
+console.log(steven)
+steven.name = 'Steven'
+steven.birthYear = 1999
+steven.calcAge()
+
+console.log(steven.__proto__ === PersonProto)
+const carol = Object.create(PersonProto)
+carol.init('Carol', 2003)
+carol.calcAge()
