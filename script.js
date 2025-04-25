@@ -18,6 +18,14 @@ console.log(felix, lucio)
 console.log(felix instanceof Person)
 console.log(123 instanceof Person)
 
+Person.hey = function() {
+    console.log('Hey there')
+}
+Person.hey()
+//felix.hey() error, is not inherited
+// is not on the prototype
+
+
 //Prototypes 
 Person.prototype.calcAge = function() {
     console.log(2025 - this.birthYear)
@@ -115,6 +123,10 @@ class PersonCl {
     get fullName() {
         return this._fullName
     }
+    static hey()  {
+        console.log('hey there')
+        console.log(this)
+    }
 }
 
 
@@ -149,3 +161,5 @@ const account = {
 console.log(account.latest)
 
 account.latest = 50
+
+PersonCl.hey()
