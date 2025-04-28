@@ -71,7 +71,7 @@ const h1 = document.querySelector('.h1')
 
 /////////Challenge///////////
 
-
+/* 
 const Car = function(brand, speed){
     this.brand = brand
     this.speed = speed
@@ -95,6 +95,8 @@ BMW.accelerate()
 BMW.brake()
 Mercedes.accelerate()
 Mercedes.brake()
+
+*/
 
 // classes ES6
 
@@ -187,3 +189,41 @@ console.log(steven.__proto__ === PersonProto)
 const carol = Object.create(PersonProto)
 carol.init('Carol', 2003)
 carol.calcAge()
+
+// Coding Challenge #2
+
+/* 
+1. Re-create challenge 1, but this time using an ES6 class;
+2. Add a getter called 'speedUS' which returns the current speed in mi/h (divide by 1.6);
+3. Add a setter called 'speedUS' which sets the current speed in mi/h (but converts it to km/h before storing the value, by multiplying the input by 1.6);
+4. Create a new car and experiment with the accelerate and brake methods, and with the getter and setter.
+
+GOOD LUCK 😀
+*/
+/*
+class car {
+    constructor(brand, speed){
+        this.speed = speed
+        this.brand = brand
+    }
+
+    accelerate() {
+        this.speed += 10
+        console.log(`${this.brand} going at ${this.speed}`)
+    }
+
+    break() {
+        this.speed -= 5
+        console.log(`${this.brand} going at ${this.speed}`)
+    }
+    
+    get speedUs() {
+        return this.speed / 1.6
+    }
+    set speedUs(speedMi) {
+        this.speed = speedMi * 1.6
+    }
+}
+
+const corolla = new car("toyota", 80)
+*/
