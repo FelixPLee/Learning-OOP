@@ -227,3 +227,18 @@ class car {
 
 const corolla = new car("toyota", 80)
 */
+
+const Student = function(firstName, birthYear, course) {
+    Person.call(this, firstName, birthYear)
+    this.course = course;
+}
+
+Student.prototype = Object.create(Person.prototype)
+
+Student.prototype.introduce = function() {
+    console.log(`My name is ${this.firstName} and I study ${this.course}`)
+}
+
+const gabriel = new Student('Baias', 2002, 'ADS')
+
+Student.prototype.constructor = Student
