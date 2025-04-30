@@ -69,34 +69,6 @@ console.log(arr.unique())
 
 const h1 = document.querySelector('.h1')
 
-/////////Challenge///////////
-
-/* 
-const Car = function(brand, speed){
-    this.brand = brand
-    this.speed = speed
-}
-
-Car.prototype.accelerate = function() {
-    this.speed += 10
-    console.log(`${this.brand} going at ${this.speed}`)
-}
-
-Car.prototype.brake = function() {
-    this.speed -= 5
-    console.log(`${this.brand} going at ${this.speed}`)
-}
-
-const BMW = new Car('BMW', 120)
-const Mercedes = new Car('Mercedes', 95)
-
-console.log(`${BMW.brand} going at ${BMW.speed}`)
-BMW.accelerate()
-BMW.brake()
-Mercedes.accelerate()
-Mercedes.brake()
-
-*/
 
 // classes ES6
 
@@ -108,14 +80,14 @@ class PersonCl {
     constructor(fullName, birthYear){
     this.fullName = fullName
     this.birthYear = birthYear
-    }
-    //Methods
-    calcAge() {
-        console.log(2025 - this.birthYear)
-    }
+}
+//Methods
+calcAge() {
+    console.log(2025 - this.birthYear)
+}
 
-    get age() {
-        return 2025 - this.birthYear
+get age() {
+    return 2025 - this.birthYear
     }
 
     set fullName(name) {
@@ -151,11 +123,11 @@ felix2.greet()
 const account = {
     owner: 'Felix',
     movements: [200, 100, 530, 120],
-
+    
     get latest() {
         return this.movements.slice(-1).pop()
     },
-
+    
     set latest(mov) {
         this.movements.push(mov)
     }
@@ -190,43 +162,7 @@ const carol = Object.create(PersonProto)
 carol.init('Carol', 2003)
 carol.calcAge()
 
-// Coding Challenge #2
 
-/* 
-1. Re-create challenge 1, but this time using an ES6 class;
-2. Add a getter called 'speedUS' which returns the current speed in mi/h (divide by 1.6);
-3. Add a setter called 'speedUS' which sets the current speed in mi/h (but converts it to km/h before storing the value, by multiplying the input by 1.6);
-4. Create a new car and experiment with the accelerate and brake methods, and with the getter and setter.
-
-GOOD LUCK 😀
-*/
-/*
-class car {
-    constructor(brand, speed){
-        this.speed = speed
-        this.brand = brand
-    }
-
-    accelerate() {
-        this.speed += 10
-        console.log(`${this.brand} going at ${this.speed}`)
-    }
-
-    break() {
-        this.speed -= 5
-        console.log(`${this.brand} going at ${this.speed}`)
-    }
-    
-    get speedUs() {
-        return this.speed / 1.6
-    }
-    set speedUs(speedMi) {
-        this.speed = speedMi * 1.6
-    }
-}
-
-const corolla = new car("toyota", 80)
-*/
 
 const Student = function(firstName, birthYear, course) {
     Person.call(this, firstName, birthYear)
@@ -242,3 +178,105 @@ Student.prototype.introduce = function() {
 const gabriel = new Student('Baias', 2002, 'ADS')
 
 Student.prototype.constructor = Student
+
+// Coding Challenge #2
+
+/* 
+1. Re-create challenge 1, but this time using an ES6 class;
+2. Add a getter called 'speedUS' which returns the current speed in mi/h (divide by 1.6);
+3. Add a setter called 'speedUS' which sets the current speed in mi/h (but converts it to km/h before storing the value, by multiplying the input by 1.6);
+4. Create a new car and experiment with the accelerate and brake methods, and with the getter and setter.
+
+GOOD LUCK 😀
+*/
+//Challenge 3
+
+/* 
+1. Use a constructor function to implement an Electric Car (called EV) as a CHILD "class" of Car. Besides a make and current speed, the EV also has the current battery charge in % ('charge' property);
+2. Implement a 'chargeBattery' method which takes an argument 'chargeTo' and sets the battery charge to 'chargeTo';
+3. Implement an 'accelerate' method that will increase the car's speed by 20, and decrease the charge by 1%. Then log a message like this: 'Tesla going at 140 km/h, with a charge of 22%';
+4. Create an electric car object and experiment with calling 'accelerate', 'brake' and 'chargeBattery' (charge to 90%). Notice what happens when you 'accelerate'! HINT: Review the definiton of polymorphism 😉
+
+DATA CAR 1: 'Tesla' going at 120 km/h, with a charge of 23%
+
+GOOD LUCK 😀
+*/
+
+
+/* 
+class car {
+    constructor(brand, speed){
+        this.speed = speed
+        this.brand = brand
+    }
+    
+    accelerate() {
+        this.speed += 10
+        console.log(`${this.brand} going at ${this.speed}`)
+    }
+    
+    break() {
+        this.speed -= 5
+        console.log(`${this.brand} going at ${this.speed}`)
+    }
+    
+    get speedUs() {
+        return this.speed / 1.6
+    }
+    set speedUs(speedMi) {
+        this.speed = speedMi * 1.6
+    }
+}
+
+const corolla = new car("toyota", 80)
+*/
+/////////Challenge///////////
+
+const Car = function(brand, speed){
+    this.brand = brand
+    this.speed = speed
+}
+
+Car.prototype.accelerate = function() {
+    this.speed += 10
+    console.log(`${this.brand} going at ${this.speed}`)
+}
+
+Car.prototype.brake = function() {
+    this.speed -= 5
+    console.log(`${this.brand} going at ${this.speed}`)
+}
+
+const BMW = new Car('BMW', 120)
+const Mercedes = new Car('Mercedes', 95)
+
+console.log(`${BMW.brand} going at ${BMW.speed}`)
+BMW.accelerate()
+BMW.brake()
+Mercedes.accelerate()
+Mercedes.brake()
+
+
+const EV = function(brand, speed, charge) {
+    Car.call(this, brand, speed)
+    this.charge = charge
+}
+EV.prototype = Object.create(Car.prototype)
+
+EV.prototype.chargeBattery = function (chargeTo) {
+    this.charge = chargeTo
+}
+EV.prototype.accelerate = function() {
+    this.speed+= 20
+        this.charge--
+        console.log(`${this.brand}, Speed ${this.speed}, Charge ${this.charge}`)
+    }
+    
+    EV.prototype.constructor = EV
+    
+    const king = new EV('BYD', 100, 50)
+
+king.accelerate()
+king.chargeBattery(81)
+king.accelerate()
+    
