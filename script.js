@@ -279,4 +279,20 @@ EV.prototype.accelerate = function() {
 king.accelerate()
 king.chargeBattery(81)
 king.accelerate()
+
+class StudentCl extends PersonCl {
+    constructor(fullName, birthYear, course)
+    {
+        super(fullName, birthYear)
+        this.console = course
+    }
+    introduce() {
+        console.log(`My name is ${this.fullName} and I study ${this.course}`)
+    }
+    calcAge() {
+        console.log(`I'm ${2025 - this.birthYear}`)
+    }
+}
+
+const kelvin = new StudentCl('Kelvas 123', 2002, 'ADS')
     
