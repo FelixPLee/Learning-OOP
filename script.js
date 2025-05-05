@@ -139,19 +139,6 @@ account.latest = 50
 PersonCl.hey()
 
 
-const PersonProto = {
-    calcAge() {
-        console.log(2025 - this.birthYear)
-    },
-
-    init(firstName, birthYear) {
-        this.firstName = firstName
-        this.birthYear= 2002
-        steven.calcAge()
-    }
-}
-
-const steven = Object.create(PersonProto)
 console.log(steven)
 steven.name = 'Steven'
 steven.birthYear = 1999
@@ -178,6 +165,49 @@ Student.prototype.introduce = function() {
 const gabriel = new Student('Baias', 2002, 'ADS')
 
 Student.prototype.constructor = Student
+
+class StudentCl extends PersonCl {
+    constructor(fullName, birthYear, course)
+    {
+        super(fullName, birthYear)
+        this.console = course
+    }
+    introduce() {
+        console.log(`My name is ${this.fullName} and I study ${this.course}`)
+    }
+    calcAge() {
+        console.log(`I'm ${2025 - this.birthYear}`)
+    }
+}
+
+const kelvin = new StudentCl('Kelvas 123', 2002, 'ADS')
+
+const PersonProto = {
+    calcAge() {
+        console.log(2025 - this.birthYear)
+    },
+
+    init(firstName, birthYear) {
+        this.firstName = firstName
+        this.birthYear= 2002
+        steven.calcAge()
+    }
+}
+
+const steven = Object.create(PersonProto)
+
+const StudentProto = Object.create(PersonProto)
+StudentProto.init = function(firstName, birthYear, course) {
+    PersonProto.init.call(this, firstName, birthYear)
+    this.course = course
+}
+Student.introduce = function() {
+    console.log(`My name is ${this.firstName} and I study ${this.course}`)
+}
+
+const jay = Object.create(StudentProto)
+jay.init('Jay', 2010, 'PP')
+
 
 // Coding Challenge #2
 
@@ -279,20 +309,3 @@ EV.prototype.accelerate = function() {
 king.accelerate()
 king.chargeBattery(81)
 king.accelerate()
-
-class StudentCl extends PersonCl {
-    constructor(fullName, birthYear, course)
-    {
-        super(fullName, birthYear)
-        this.console = course
-    }
-    introduce() {
-        console.log(`My name is ${this.fullName} and I study ${this.course}`)
-    }
-    calcAge() {
-        console.log(`I'm ${2025 - this.birthYear}`)
-    }
-}
-
-const kelvin = new StudentCl('Kelvas 123', 2002, 'ADS')
-    
