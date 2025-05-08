@@ -211,15 +211,17 @@ jay.init('Jay', 2010, 'PP')
 
 
 class Account {
+    locale = navigator.language
+    bank = 'Bankist'
+    #movements = []
+    #pin
     constructor(owner, currency, pin) {
         this.owner = owner
         this.currency = currency
-        this.pin = pin
-        this.movements = []
-        this.locale = navigator.language
-
+        this.#pin = pin
         console.log(`Thanks for opening an account ${owner}`)
     }
+    // API public interface
     deposit(val) {
         this.movements.push(val)
     }
@@ -228,7 +230,8 @@ class Account {
         this.deposit(-val)
     }
 
-    approveLoan(val) {
+    #approveLoan(val) {
+        //fake
         return true
     }
 
