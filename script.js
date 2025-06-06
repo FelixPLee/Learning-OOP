@@ -138,8 +138,8 @@ account.latest = 50
 
 PersonCl.hey()
 
-
-console.log(steven)
+/*
+console.log(felix)
 steven.name = 'Steven'
 steven.birthYear = 1999
 steven.calcAge()
@@ -148,7 +148,7 @@ console.log(steven.__proto__ === PersonProto)
 const carol = Object.create(PersonProto)
 carol.init('Carol', 2003)
 carol.calcAge()
-
+*/
 
 
 const Student = function(firstName, birthYear, course) {
@@ -246,7 +246,7 @@ class Account {
 const acc1 = new Account('Jonas', 'EUR', 1111)
 console.log(acc1)
 
-acc1.movements.push(250)
+//acc1.movements.push(250)
 
 // Coding Challenge #2
 
@@ -272,7 +272,7 @@ GOOD LUCK 😀
 */
 
 
-/* 
+
 class car {
     constructor(brand, speed){
         this.speed = speed
@@ -287,6 +287,7 @@ class car {
     break() {
         this.speed -= 5
         console.log(`${this.brand} going at ${this.speed}`)
+        return this
     }
     
     get speedUs() {
@@ -298,7 +299,7 @@ class car {
 }
 
 const corolla = new car("toyota", 80)
-*/
+
 /////////Challenge///////////
 
 const Car = function(brand, speed){
@@ -348,3 +349,27 @@ EV.prototype.accelerate = function() {
 king.accelerate()
 king.chargeBattery(81)
 king.accelerate()
+
+
+class Ev  extends car{
+    constructor(brand, speed, charge) {
+    super(brand, speed)
+    this.charge = charge
+    }
+
+    accelerate() {
+        this.speed += 10
+        this.charge--
+        console.log(`${this.brand}, Speed ${this.speed}, Charge ${this.charge}`)
+        return this
+    }
+    
+    chargeBattery(chargeTo) {
+        this.charge = chargeTo
+        return this
+    }    
+}
+
+const corollaFlex = new Ev("toyota", 80, 90)
+
+corollaFlex.accelerate().accelerate().chargeBattery(91).accelerate().break().accelerate()
